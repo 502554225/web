@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/ms.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<body>
+
+    <div class="title">
+        <span class="title-font">机构管理系统</span>
+        <span class="tou"><img src="./img/pic.png" alt=""></span>
+    </div>
+
+    <div class="side">
+        <div class="logo"></div>
+        <ul class="list">
+            <li>
+                <div class="clearfix">
+                    <div class="img img-1"></div>
+
+                    <span class="name">首页</span>
+                </div>
+
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">员工管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">学员管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">班级管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">学分管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">寝室管理</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="bar">
+        <span class="bar-font">当前位置：员工>员工列表</span>
+    </div>
+    <div class="pm-main">
+
+        <div class="table">
+            <button class="button caozuo">
+                <span class="bt-font" onclick="toNew()">新建员工</span>
+            </button>
+            <button id="delete" class="button caozuo" onclick="deleteall()">
+                <span class="bt-font" >批量删除</span>
+            </button>
+            <div class="search">
+                <input id="search" type="text" class="search-input"><button class="search-button" onclick="search()"><span class="search-img"></span></button>
+            </div>
+            <div class="tablec">
+                <table id="table-main" class="table-main">
+                    <tr>
+                        <th><span class="checkBox" onclick="checkbox()"></span></th>
+                        <th>姓名</th>
+                        <th>手机号</th>
+                        <th>所属部门</th>
+                        <th>入职时间</th>
+                        <th>人事状态</th>
+                        <th>职位</th>
+                        <th>身份证号码</th>
+                        <th>操作</th>
+                    </tr>
+
+
+                    
+                </table>
+
+            </div>
+            <div  id="data" class="data">
+                    <div class="nodata"></div>
+            </div>
+            <div id="page" class="page">
+                <span class="pageItem disabled">上一页</span>
+                <span id="pageItem-1" class="pageItem current " onclick="jump(1)">1</span>
+                <!-- <span class="pageItem">2</span>
+                <span class="pageItem">3</span>
+                <span class="pageItem">4</span>
+                <span class="pageItem">5</span> -->
+                <!-- <span class="pageItem dot">...</span> -->
+                <!-- <span class="pageItem">下一页</span> -->
+            </div>
+            
+        </div>
+    </div>
+    <div id="popup" class="popup">
+            <div class="popup-main">
+                <div class="popup-logo"></div>
+                <span class="popup-font">当前操作将删除所有选中数据，确定删除吗？</span>
+                <div class="bt-container">
+                    <button class="button p-button">
+                        <span class="bt-font" onclick="confirm()">确定删除</span>
+                    </button>
+                    <button class="button bt-white p-button">
+                        <span class="bt-white-font" onclick="cancel()">取消操作</span></button>
+                </div>
+    
+                <div class="logo-close" onclick="cancel()"></div>
+            </div>
+    </div>
+
+</body>
+<script src="js/studentM.js"></script>
+
+
+
+</html>
