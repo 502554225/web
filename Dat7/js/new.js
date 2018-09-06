@@ -1,7 +1,6 @@
 
 
 let back = () => {
-    // location.href="student-management.html"
     $("#list,#list-main").css({display: "block"});
     $("#new,#new-main").css({display: "none"});
 }

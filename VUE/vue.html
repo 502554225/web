@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns: xmlns: xmlns: xmlns:
+      xmlns: xmlns:v-model="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/ms.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/new.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="//cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+
+
+</head>
+
+<body>
+<div id="app">
+    <div class="title">
+        <span class="title-font">机构管理系统</span>
+        <span class="tou"><img src="./img/pic.png" alt=""></span>
+    </div>
+
+    <div class="side">
+        <div class="logo"></div>
+        <ul class="list">
+            <li>
+                <div class="clearfix">
+                    <div class="img img-1"></div>
+
+                    <span class="name">首页</span>
+                </div>
+
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">员工管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">学员管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">班级管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">学分管理</span>
+                </div>
+            </li>
+            <li>
+                <div class="clearfix">
+                    <div class="img img-2"></div>
+
+                    <span class="name">寝室管理</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="list" class="bar">
+        <span class="bar-font">当前位置：员工>员工列表</span>
+    </div>
+    <div v-show=tolist id="list-main" class="pm-main">
+
+        <div class="table">
+            <button class="button caozuo" v-on:click="gotonew">
+                <span class="bt-font">新建员工</span>
+            </button>
+            <button id="delete" class="button caozuo"  v-on:click="deleteall">
+                <span class="bt-font">批量删除</span>
+            </button>
+            <div class="search">
+                <input v-model="searchName" id="search" type="text" class="search-input">
+                <button class="search-button" ><span class="search-img"></span></button>
+            </div>
+            <div class="tab">
+                <span class="tabA bt-white" onclick="tab(1)">内部员工</span><span class="tabB bt-white" onclick="tab(2)">外部员工</span>
+            </div>
+            <div class="tablec">
+                <table id="table-main" class="table-main">
+                    <tr>
+                        <th><span class="checkBox" v-on:click="checkbox(-1)"></span></th>
+                        <th>姓名</th>
+                        <th>手机号</th>
+                        <th>性别</th>
+                        <th>人事状态</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr  v-for="(item,index) in staff">
+                        <td><span class="checkBox"  v-on:click="checkbox(index)" ></span>
+
+                        <td>{{item.name}}</td>
+                        <td>{{item.tel}}</td>
+                        <td>{{item.man}}</td>
+                        <td>{{item.personnelStatus}}</td>
+                        <td>{{item.remarks}}</td>
+                        <td><span class='editText' onclick='editText()'>编辑</span><span class='delText' v-on:click="delText(index)">删除</span>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+            <div v-show=isdata id="data" class="data">
+                <div class="nodata"></div>
+                <div class="nodata-font">无数据</div>
+            </div>
+            <div v-show=bitdata id="page" class="page">
+                <span class="pageItem disabled">上一页</span>
+                <span id="pageItem-1" class="pageItem current " onclick="jump(1)">1</span>
+            </div>
+
+        </div>
+    </div>
+    <div id="new" class="bar">
+        <span class="bar-font">当前位置：员工>新建</span>
+    </div>
+    <div v-show=tonew id="new-main" class="pm-main">
+        <div class="table2">
+            <button class="bt-white caozuo">
+                <span class="bt-white-font" v-on:click="tolist">返回</span>
+            </button>
+            <div class="tablecc">
+                <table class="tb">
+                    <tr>
+                        <td class="na"><span class="x">*</span><span>姓名</span></td>
+                        <td class="inp"><input v-model="name" id="name" type="text"><span id="noName" class="errors">请输入姓名</span>
+                        </td>
+                        <td class="na"></td>
+                        <td class="inp"></td>
+                    </tr>
+                    <tr>
+                        <td class="na">
+                            <span class="x">*</span>
+                            <span>手机号</span>
+
+                        </td>
+                        <td class="inp">
+                            <input v-model="tel" id="tel" type="text">
+                            <span id="noTel" class="errors">请输入手机号</span>
+                            <span id="errorTel" class="errors">请输入正确的手机号</span>
+                        </td>
+
+                    </tr>
+                    <tr class="xing">
+                        <td class="na"><span class="x">*</span><span>性别</span></td>
+                        <td class="inp">
+                            <input v-model="man" id="man" name="gender" type="radio" checked="checked">
+                            <span>男</span>
+                            <input id="woman" name="gender" type="radio">
+                            <span>女</span>
+                        </td>
+                        <td class="na"></td>
+                        <td class="inp"></td>
+
+                    </tr>
+                    <tr>
+                        <td class="na"><span class="x">*</span><span>人事状态</span></td>
+                        <td class="inp">
+                            <select v-model="personnelStatus" id="personnelStatus">
+                                <option value="在职">在职</option>
+                                <option value="离职">离职</option>
+                            </select></td>
+                        <td class="na"></td>
+                        <td class="inp"></td>
+                    </tr>
+                    <tr>
+                        <td class="na remarks"><span>备注</span></td>
+                        <td class="inp remarks"><textarea v-model="remarks" id="remarks"></textarea></td>
+                        <td class="na"></td>
+                        <td class="inp"></td>
+                    </tr>
+
+                    </tr>
+                    <td class="cc">
+                        <button class="button" v-on:click="submit">
+                            <span class="bt-font">提交</span>
+                        </button>
+                    </td>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div id="details" class="bar">
+        <span class="bar-font">当前位置：员工>详情</span>
+    </div>
+    <div v-show=todetail id="details-main" class="pm-main">
+        <div class="table2">
+            <button class="bt-white caozuo">
+                <span class="bt-white-font" onclick="back()">返回</span>
+            </button>
+            <div class="tablecc">
+                <table class="tb">
+                    <tr>
+                        <td class="na"><span class="x">*</span><span>姓名</span></td>
+                        <td class="inp"></td>
+
+                    </tr>
+                    <tr>
+                        <td class="na"><span class="x">*</span><span>手机号</span></td>
+                        <td class="inp"></td>
+
+                    </tr>
+                    <tr class="xing">
+                        <td class="na"><span class="x">*</span><span>性别</span></td>
+                        <td class="inp"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td class="na"><span class="x">*</span><span>人事状态</span></td>
+                        <td class="inp">
+
+
+                    </tr>
+                    <tr>
+                        <td class="na remarks"><span>备注</span></td>
+                        <td class="inp remarks"></td>
+
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-main">
+            <div class="popup-logo"></div>
+            <span class="popup-font">当前操作将删除这条数据，确定删除吗？</span>
+            <div class="bt-container">
+                <button class="button p-button">
+                    <span class="bt-font" onclick="confirm()">确定删除</span>
+                </button>
+                <button class="button bt-white p-button">
+                    <span class="bt-white-font" onclick="cancel()">取消操作</span></button>
+            </div>
+
+            <div class="logo-close" onclick="cancel()"></div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="js/index.js"></script>
+
+
+</html>
