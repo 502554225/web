@@ -14,7 +14,17 @@
 
 
 </head>
-
+<!--<script type="text/template" id="mypage">-->
+    <!--<div >-->
+        <!--<span class="pageItem disabled">上一页</span>-->
+        <!--<span class="pageItem current " v-on:click="jump({{currentPage}})">{{currentPage}}</span>-->
+        <!--<span class="pageItem current " v-on:click="jump(currentPage+1)">{{currentPage}}+1</span>-->
+        <!--<span class="pageItem current " v-on:click="jump(currentPage+2)">{{currentPage}}+2</span>-->
+        <!--<span class="pageItem current " v-on:click="jump(currentPage+3)">{{currentPage}}+3</span>-->
+        <!--<span class="pageItem current " v-on:click="jump(currentPage+4)">{{currentPage}}+4</span>-->
+        <!--<span class="pageItem disabled">下一页</span>-->
+    <!--</div>-->
+<!--</script>-->
 <body>
 <div id="app">
     <div class="title">
@@ -80,12 +90,12 @@
             <button class="button caozuo" v-on:click="gotonew">
                 <span class="bt-font">新建员工</span>
             </button>
-            <button id="delete" class="button caozuo"  v-on:click="deleteall">
+            <button id="delete" class="button caozuo" v-on:click="deleteall">
                 <span class="bt-font">批量删除</span>
             </button>
             <div class="search">
                 <input v-model="searchName" id="search" type="text" class="search-input">
-                <button class="search-button" ><span class="search-img"></span></button>
+                <button class="search-button"><span class="search-img"></span></button>
             </div>
             <div class="tab">
                 <span class="tabA bt-white" onclick="tab(1)">内部员工</span><span class="tabB bt-white" onclick="tab(2)">外部员工</span>
@@ -93,7 +103,7 @@
             <div class="tablec">
                 <table id="table-main" class="table-main">
                     <tr>
-                        <th><span class="checkBox" v-on:click="checkbox(-1)"></span></th>
+                        <th><span v-bind:class="isCheckedAll ? 'boxbg' : ''" class="checkBox" v-on:click="checkbox(-1)"></span></th>
                         <th>姓名</th>
                         <th>手机号</th>
                         <th>性别</th>
@@ -101,15 +111,16 @@
                         <th>备注</th>
                         <th>操作</th>
                     </tr>
-                    <tr  v-for="(item,index) in staff">
-                        <td><span class="checkBox"  v-on:click="checkbox(index)" ></span>
+                    <tr v-bind:class="toStaff[index].isChecked ? 'color' : '' "  v-for="(item,index) in toStaff">
+                        <td><span class="checkBox" v-bind:class="item.isChecked ? 'boxbg' : ''" v-on:click="checkbox(index)"></span>
 
                         <td>{{item.name}}</td>
                         <td>{{item.tel}}</td>
                         <td>{{item.man}}</td>
                         <td>{{item.personnelStatus}}</td>
                         <td>{{item.remarks}}</td>
-                        <td><span class='editText' onclick='editText()'>编辑</span><span class='delText' v-on:click="delText(index)">删除</span>
+                        <td><span class='editText' onclick='editText()'>编辑</span><span class='delText'
+                                                                                       v-on:click="delText(index)">删除</span>
                         </td>
                     </tr>
 
@@ -139,7 +150,9 @@
                 <table class="tb">
                     <tr>
                         <td class="na"><span class="x">*</span><span>姓名</span></td>
-                        <td class="inp"><input v-model="name" id="name" type="text"><span id="noName" class="errors">请输入姓名</span>
+                        <td class="inp">
+                            <input v-model="aStaff.name" id="name" type="text">
+                            <span v-show=isname id="noName" class="errors">请输入姓名</span>
                         </td>
                         <td class="na"></td>
                         <td class="inp"></td>
@@ -151,18 +164,18 @@
 
                         </td>
                         <td class="inp">
-                            <input v-model="tel" id="tel" type="text">
-                            <span id="noTel" class="errors">请输入手机号</span>
-                            <span id="errorTel" class="errors">请输入正确的手机号</span>
+                            <input v-model="aStaff.tel" id="tel" type="text">
+                            <span v-show=istel id="noTel" class="errors">请输入手机号</span>
+                            <!--<span id="errorTel" class="errors">请输入正确的手机号</span>-->
                         </td>
 
                     </tr>
                     <tr class="xing">
                         <td class="na"><span class="x">*</span><span>性别</span></td>
                         <td class="inp">
-                            <input v-model="man" id="man" name="gender" type="radio" checked="checked">
+                            <input v-model:checked="aStaff.man" id="man" name="gender" type="radio" value="1">
                             <span>男</span>
-                            <input id="woman" name="gender" type="radio">
+                            <input v-model:checked="aStaff.man" id="woman" name="gender"  type="radio" value="0" >
                             <span>女</span>
                         </td>
                         <td class="na"></td>
@@ -172,16 +185,17 @@
                     <tr>
                         <td class="na"><span class="x">*</span><span>人事状态</span></td>
                         <td class="inp">
-                            <select v-model="personnelStatus" id="personnelStatus">
+                            <select v-model="aStaff.personnelStatus" id="personnelStatus">
                                 <option value="在职">在职</option>
                                 <option value="离职">离职</option>
+                                <option value="休假">休假</option>
                             </select></td>
                         <td class="na"></td>
                         <td class="inp"></td>
                     </tr>
                     <tr>
                         <td class="na remarks"><span>备注</span></td>
-                        <td class="inp remarks"><textarea v-model="remarks" id="remarks"></textarea></td>
+                        <td class="inp remarks"><textarea v-model="aStaff.remarks" id="remarks"></textarea></td>
                         <td class="na"></td>
                         <td class="inp"></td>
                     </tr>

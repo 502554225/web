@@ -1,169 +1,77 @@
+var page = {
+
+    /**
+     * props:外部传参， 通过v-bind
+     * computed内部转换数据，自带缓存
+     */
+
+    data: function () {
+        return {
+            total: 100,// 数据总条数
+            display: 10,// 每页显示条数
+            currentPage: 1,// 当前页码
+            pagegroup: 10// 分页条数
+        }
+    },
+    computed: {
+        test2() {
+            return this.btnText + 'xxx';
+        }
+    },
+    methods: {
+        onClick() {
+
+            this.$emit('on-my-click', 1231) // 内部事件抛出
+        }
+    },
+    template: '#mypage', // 这种方式需要在html中增加 <script type="text/template" id="myButton"> ... </script>
+    // template: '<span v-on:click="onClick">{{btnText}} -- {{test}} -- {{test2}}</span>' // 原生写法
+}
+
+
 var app = new Vue({
     el: '#app',
     data: {
         staff: [],
-        externalStaff: [{name: "1", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "2", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "3", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "4", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "51", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "6", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "7", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "8", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "9", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "10", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "11", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "12", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "13", personnelStatus: "在职", tel: "1", man: "男", remarks: ""},
-            {name: "14", personnelStatus: "在职", tel: "1", man: "男", remarks: ""}],
         tonew: false,
         tolist: true,
         todetail: false,
-        id: 1, name: "", personnelStatus: "", tel: "", man: "", remarks: "",
+        isCheckedAll:false,
+        isname:false,
+        istel:false,
+        aStaff: {
+            id: 1,
+            name: "",
+            personnelStatus: "在职",
+            tel: "",
+            man: "1",
+            remarks: "",
+            isChecked: false,
+        },
         searchName: "",
-        isChecked: "checkBox",
         deletelist: [],
         deletelist2: [],
     },
-    methods: {
-        gotonew: function () {
-            this.tonew = true;
-            this.tolist = false;
-            this.todetail = false;
-        },
-        gotodetail: function () {
-            this.tonew = false;
-            this.tolist = false;
-            this.todetail = true;
-        },
-        gotolist: function () {
-            this.tonew = false;
-            this.tolist = true;
-            this.todetail = false;
-        },
-        submit: function () {
-            let astaff = {
-                id: this.id,
-                name: this.name,
-                personnelStatus: this.personnelStatus,
-                tel: this.tel,
-                man: this.man,
-                remarks: this.remarks,
-            }
-            this.staff.push(astaff);
-            this.id++;
-            this.gotolist();
-
-        },
-        clear: function () {
-            this.name = "";
-            this.personnelStatus = "";
-            this.tel = "";
-            this.man = "";
-            this.remarks = "";
-        },
-        delText: function (index) {
-            this.staff.splice(index, 1);
-        },
-        checkbox: function (index) {
-            let l=$(".checkBox").length;
-            let classname = $("tr ").get(index + 1).firstElementChild.firstElementChild.className;
-            if (classname == "checkBox boxbg") {
-                $("tr ").get(index + 1).firstElementChild.firstElementChild.className = "checkBox"
-                this.isChecked="checkBox";
-                for(let i=0;i<l;i++){
-                    if ($(".checkBox")[i+1].className=="checkBox boxbg") {
-                        $("#list-main tr").eq(i+1).css("background","#eee");
-                    }
-                    else{
-                        $("#list-main tr").eq(i+1).css("background","#fff");
-                    }
-
-                }
-                    return;
-            }
-            else {
-                $("tr ").get(index + 1).firstElementChild.firstElementChild.className = "checkBox boxbg"
-                this.isChecked="checkBox boxbg";
-                for(let i=0;i<l;i++){
-                    if ($(".checkBox")[i+1].className=="checkBox boxbg") {
-                        $("#list-main tr").eq(i+1).css("background","#eee");
-                    }
-                    else{
-                        $("#list-main tr").eq(i+1).css("background","#fff");
-                    }
-
-                }
-                return;
-            }
-
-            if (index < 0) {
-                $(".checkBox").toggleClass("boxbg");
-            }
-
-
-
-            for(let i=0;i<l;i++){
-                if ($(".checkBox")[i+1].className=="checkBox boxbg") {
-                    $("#list-main tr").eq(i+1).css("background","#eee");
-                }
-                else{
-                    $("#list-main tr").eq(i+1).css("background","#fff");
-                }
-
-            }
-
-        },
-        deleteall: function () {
-            this.deletelist=[];
-            let boxbg=$("td .checkBox");
-
-            for (let i=0,l=boxbg.length;i<l;i++) {
-                if (boxbg[i].className.includes("boxbg")) {
-                    this.deletelist.push(i);
-                }
-
-            }
-            if (this.deletelist.length==0){
-                alert("请选择以为员工!")
-                return
-            }
-
-            this.staff.forEach((item, index) => {    // 遍历数组1找到相同的数据存入数组2
-
-                let f = (v) => {
-                    return v == index;
-                }
-                if (this.deletelist.find(f, index) != undefined) {
-                    let del = this.staff.slice(index, index + 1);
-                    this.deletelist2 = this.deletelist2.concat(del);
-                }
-            })
-            let i = 1;
-            let staff2 = [];
-            Object.assign(staff2, this.staff);
-            this.staff.forEach((item, index) => {
-
-
-                this.deletelist2.forEach((item2, index2) => {
-
-                    if (item == item2) {
-                        let j = index;
-                        if (i > 1) {
-                            j = j - i + 1;
-                        }
-                        staff2.splice(j, 1);
-                        i++;
-                    }
-                })
-
-            })
-            this.staff=staff2;
-            boxbg=$("td .checkBox").attr("class","checkBox");
-        }
-    },
     computed: {
+        toStaff(){
+            let staff=[];
+            // staff=this.staff.slice();
+            this.staff.forEach((item,index)=>{
+                staff[index]= {
+                    id: item.id,
+                    name: item.name,
+                    personnelStatus: item.personnelStatus,
+                    tel: item.tel,
+                    man: item.man == "1" ? "男" : "女",
+                    remarks: item.remarks,
+                    isChecked: item.isChecked,
+                }
+            })
+            return staff;
 
+
+
+        },
         isdata() {
             // 判断有无数据
             if (this.staff) {
@@ -183,22 +91,96 @@ var app = new Vue({
                 return false;
             }
         },
-        // sLength2(){
-        //     this.sLength=this.staff.length;
-        //     return this.sLength;
-        // },
-        // pageItem2(){
-        //     this.pageItem=parseInt(this.sLength/10)+1
-        //     return this.pageItem;
-        // },
-        // pageItemlist2(){
-        //     for(let i=0;i<this.sLength;i++){
-        //         this.pageItemlist.push(1);
-        //     }
-        // }
+
     },
+    methods: {
+        gotonew: function () {
+            this.tonew = true;
+            this.tolist = false;
+            this.todetail = false;
+        },
+        gotodetail: function () {
+            this.tonew = false;
+            this.tolist = false;
+            this.todetail = true;
+        },
+        gotolist: function () {
+            this.tonew = false;
+            this.tolist = true;
+            this.todetail = false;
+        },
+        submit: function () {
+            if (this.aStaff.name) {
+                this.isname=false;
+            }
+
+            else {
+                this.isname=true;
+                return
+            }
+            if (this.aStaff.tel) {
+                this.istel=false;
+            }
+            else{
+                this.istel=true;
+                return
+            }
+            let astaff={};
+            Object.assign(astaff,this.aStaff);
+            this.staff.push(astaff);
+            this.staff.id++;
+            this.gotolist();
+            this.clear();
+        },
+        clear: function () {
+            this.aStaff.name = "";
+            this.aStaff.personnelStatus = "在职";
+            this.aStaff.tel = "";
+            this.aStaff.man = "1";
+            this.aStaff.remarks = "";
+        },
+        delText: function (index) {
+            this.staff.splice(index, 1);
+        },
+        checkbox: function (index) {
+            if (index<0){
+
+                this.isCheckedAll=!this.isCheckedAll;
+                this.staff.forEach((item)=>{
+                    item.isChecked=this.isCheckedAll;
+                })
+                return
+            }
+            this.staff[index].isChecked=!this.staff[index].isChecked;
+
+            let isTrue=1;
+            this.staff.forEach((item)=>{
+                if ( item.isChecked==false){
+                    this.isCheckedAll=false;
+                    isTrue=0;
+                }
+
+            })
+            if (isTrue) {
+                this.isCheckedAll=true;
+            }
+                },
+        deleteall: function () {
+            let staff=[];
+            this.staff.forEach((item)=>{
+                if (!item.isChecked){
+                    staff.push(item);
+                }
+            })
+            this.staff=staff;
+        }
+    },
+
     created: function () {
 
+    },
+    components: {
+        'my-page': page
     }
 
 })

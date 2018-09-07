@@ -395,13 +395,12 @@
 }
 
 .color{
-    background-color:#eeeeee ;
+    background:#eeeeee ;
 }
 .td{
     position: relative;
 }
 tr td .errors{
-    display: none;
     position: absolute;
     left: 0;
     top: 40px;
