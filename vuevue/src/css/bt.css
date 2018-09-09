@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+
+/*checkbox组件样式*/
+.checkBox{display: inline-block; width:16px; height:16px; vertical-align: -3px; border:1px #9B9B9B solid; border-radius: 3px;}
+/*.checkBox:hover{border-color:#4A90E2; background-color:#fff;}*/
+.boxbg { background: #4A90E2 url(../img/active.png) no-repeat center;}
+
+/*Select组件样式*/
+.dropBox{ position: relative; width:360px; height:40px; font-size:14px; color:#333; border:1px #979797 solid; border-radius:5px;}
+.dropValue{ display: block; width: 100%; height: 100%; padding: 0 40px 0 15px; line-height: 38px;}
+.dropText{ font-size:14px; color:#4a4a4a;}
+.dropIcon{position: absolute; right:0;top:0; width:40px; height:40px; background: url("../img/triangle.png") no-repeat center;}
+.dropList {position: absolute; z-index:2; width:100%; max-height: 200px; overflow-y: auto; border-radius:5px; border:1px #979797 solid; background: #fff;}
+.dropList li{ height:40px; line-height: 40px;padding:0 15px; font-size:14px;}
+.dropList li:hover{ background-color:#eee;}
+
+/*登录页面样式*/
+.boxLayout{box-sizing: border-box; width:360px; min-height:290px; padding: 30px 20px 0; border-radius:5px; background-color:#fff; box-shadow:0 2px 5px 0 rgba(0,0,0,0.2);}
+.loginTitle{margin-bottom:20px; padding-bottom: 17px; text-align: center; font-size:24px; color:#4A90E2; background: url("../img/hr.png") no-repeat center bottom;}
+.loginWrap{ margin-bottom:20px;}
+.inputStyle{box-sizing: border-box;width:320px; height:40px; font-size:14px; padding:0 15px; color:#333; border:1px #979797 solid; border-radius:5px;}
+.inputStyle::-webkit-input-placeholder{ font-size:14px; color:#ccc;}
+.inputStyle:focus{border-color:#4A90E2;}
+.inputStyle.error{border-color:#D0021B;}
+.user{ padding:0 12px 0 35px; background: url("../img/userIcon.png") no-repeat 9px center; background-size: 18px 19px;}
+.passWord{ padding:0 12px 0 35px; background: url("../img/pswdIcon.png") no-repeat 9px center; background-size: 16px 19px;}
+.passWrapper{ margin-bottom:24px;}
+.item{font-size:0;}
+.remember{ margin-left:10px; font-size: 14px; color:#4A4A4A;}
+.forget{ font-size: 14px; color:#4A90E2;}
+.loginBtn{width:320px; height:40px; margin-bottom:20px;}
+.btnSure{ width:100%; height:100%;  padding: 0 10px; font-size: 14px; color:#fff; border-radius:5px; background-color:#4A90E2; cursor: pointer;}
+.btnSure:hover{background-color:#4281CB;}
+.bottomTips{ font-size: 14px; color:#4a4a4a;}
+.goNext{font-size: 14px; color:#4A90E2;}
+.goNext:hover,.forget:hover{cursor: pointer;}
+
+/*数据列表*/
+
+.table-main{ width: 100%; border-collapse: collapse; table-layout: fixed;}
+.table-main th{ background-color: #F2F3F4;}
+.table-main th,.table-main td{ height:44px; padding-left: 20px; text-align: left; vertical-align: middle; border-bottom:1px #E5E5E5 solid; font-size:14px; color:#4a4a4a;}
+.page{ padding:20px 0; text-align: center; font-size:0;}
+.pageItem{ display:inline-block; min-width:32px; height:30px; line-height: 30px; padding:0 9px; margin-left: -1px;  font-size:14px; border:1px #ccc solid; vertical-align: middle;}
+.pageItem:hover{position: relative; border-color:#4A90E2; cursor: pointer;}
+.pageItem.current,.current:hover{position: relative; color:#fff; cursor: default; background: #4A90E2; border-color:#4A90E2;}
+.pageItem.disabled,disabled:hover{ position: static;color:#aaa; border-color:#ccc; cursor: default;}
+.pageItem.dot{border-color:transparent; line-height: normal;}
+.editText,.delText{ display: inline-block; color:#3B7ADB;}
+.editText:hover,.delText:hover{color:#29508B; cursor: pointer;}
+.delText{ display: none;}
+.editText + .delText{margin-left:10px;}
+.table-main tr:hover td{background: #F4F8FF;}
+.table-main tr:hover td .delText{display: inline-block;}
