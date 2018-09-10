@@ -1,0 +1,117 @@
+/* 预览信息样式*/
+.tb{
+    width: 100%;
+ }
+ 
+ .table-title1{
+     padding-bottom: 20px;
+ }
+ .table-title1 span{
+     margin-left: 20px;
+     
+     font-size:16px;
+     font-family:MicrosoftYaHei;
+     color:rgba(74,74,74,1);
+ }
+ .na{
+     text-align: right;
+ }
+ .na span{
+     
+     height:19px;
+     font-size:14px;
+     font-family:MicrosoftYaHei;
+     color:rgba(74,74,74,1);
+     line-height:19px;
+ }
+ .na  .x{
+ 
+ height:19px;
+ font-size:14px;
+ font-family:MicrosoftYaHei;
+ color:rgba(208,2,27,1);
+ line-height:19px;
+ }
+ 
+ 
+ 
+ .inp span{
+     box-sizing: border-box;
+     position: relative;
+     
+     right: -10px;
+     width: 360px;
+     height:36px;
+
+font-size:14px;
+font-family:MicrosoftYaHei;
+color:rgba(74,74,74,1);
+line-height:19px;
+ }
+ .not{
+     position: relative;
+ }
+ .inp{
+     position: relative;
+     padding-bottom: 37px;
+     text-align: left;
+ }
+ .not span{
+     margin-left: 20px;
+     width:243px;
+     height:16px;
+     font-size:12px;
+     font-family:MicrosoftYaHei;
+     color:rgba(74,74,74,1);
+     line-height:16px;
+ }
+ 
+ .ti{
+     position: absolute;
+     top: -20px;
+     left: 10px;
+     width:52px;
+     height:16px;
+     font-size:12px;
+     font-family:MicrosoftYaHei;
+     color:rgba(208,2,27,1);
+     line-height:16px;
+ }
+ 
+ .cc .button{
+     text-align: center;
+     margin-left: 20px;
+     margin-top: 0;
+     width: 100px;
+     height: 40px;
+    
+ }
+ 
+ .select{
+     vertical-align: middle;
+     float: left;
+     width: 16px;
+     height: 16px;
+     border-radius: 16px;
+     border:1px solid rgba(151,151,151,1);
+     margin-left: 10px;
+ }
+ .sl{
+     vertical-align: middle;
+     float: left;
+     width:14px;
+     height:19px;
+     font-size:14px;
+     font-family:MicrosoftYaHei;
+     color:rgba(74,74,74,1);
+     line-height:19px;
+ }
+ 
+ .line span{
+    display: block;
+    margin: 20px;
+    padding-right: 20px;
+    height:2px;
+    border:1px solid rgba(204,204,204,1);
+    background: url(../img/hr.png);
+}

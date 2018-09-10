@@ -1,0 +1,44 @@
+.popup-main{
+  padding-top: 13px;
+}
+.p-title{
+  position: relative;
+
+  width: 180px;
+  height: 24px;
+  font-size:18px;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+  margin: 0 auto;
+
+}
+.line{
+  margin-top: 10px;
+  border-bottom: 1px solid rgb(204,204,204);
+}
+.p-mian{
+  margin-top: 17px;
+}
+.popup-font{
+  /*float: left;*/
+  display: inline-block;
+  width: auto;
+  margin-left: 20px;
+  vertical-align: middle;
+  font-size:14px;
+  font-family:MicrosoftYaHei;;
+
+  /*margin-left: 20px;*/
+}
+.popup-select{
+  /*float: right;*/
+  display: inline-block;
+  margin-top: 30px;
+  margin-right: 20px;
+  vertical-align: middle;
+  /*margin-right: 20px;*/
+}
+.popup-select select{
+  width: 300px;
+  height: 36px;
+}

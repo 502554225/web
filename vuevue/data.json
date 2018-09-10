@@ -1,0 +1,16 @@
+{
+  "staff": [{"id": 0, "name": "wxw", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 1, "name": "wxw2", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 2, "name": "wxw3", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 3, "name": "wxw4", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 4, "name": "wxw5", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 5, "name": "wxw6", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 6, "name": "wxw7", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 7, "name": "wxw8", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 8, "name": "wxw9", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 9, "name": "wxw10", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 10, "name": "wxw11", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 11, "name": "wxw12", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"},
+    {"id": 12, "name": "wxw13", "personnelStatus": "在职", "tel": "13100000000", "bu": "1", "startDate": "", "isChecked": false,"position":"教职工"}
+  ]
+}
